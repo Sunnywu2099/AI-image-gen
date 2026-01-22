@@ -32,19 +32,22 @@ const ratelimit = new Ratelimit({
   analytics: true,
 });
 
-const ai = new GoogleGenAI({
-  apiKey: GOOGLE_AI_STUDIO_TOKEN,
-  vertexai: true,
-  // @ts-ignore
-  // httpOptions: {
-  //   // baseUrl: "https://api-proxy.391314.xyz/gemini"
-  //  baseUrl: `https://gateway.ai.cloudflare.com/v1/${CF_ACCOUNT_ID}/${CF_GATEWAY_NAME}/google-vertex-ai/v1/projects/0000000000000/locations/europe-west2/endpoints/0000000000000000000:predict`,
-  //  headers: {
-  //   "cf-aig-authorization": `Bearer ${CF_AIG_TOKEN}`,
-  //   "Authorization": `Bearer ${GOOGLE_AI_STUDIO_TOKEN}`
-  //  }
-  // }
-});
+let ai: GoogleGenAI | null = null;
+
+function getAIClient() {
+  if (ai) return ai;
+  
+  if (!GOOGLE_AI_STUDIO_TOKEN) {
+    return null;
+  }
+
+  ai = new GoogleGenAI({
+    apiKey: GOOGLE_AI_STUDIO_TOKEN,
+    vertexai: true,
+  });
+  return ai;
+}
+
 const MODEL_ID = "gemini-2.5-flash-image";
 
 // Define interface for the formatted history item
