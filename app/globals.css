@@ -1,0 +1,138 @@
+@import url('https://fonts.googleapis.com/css2?family=Manrope:wght@200;300;400;500;600;700;800&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+body {
+  font-family: 'Manrope', Arial, Helvetica, sans-serif;
+}
+
+@layer utilities {
+  .text-balance {
+    text-wrap: balance;
+  }
+}
+
+@keyframes shimmer {
+  0% {
+    transform: translateX(-150%) skewX(12deg);
+  }
+  100% {
+    transform: translateX(250%) skewX(12deg);
+  }
+}
+
+@layer base {
+    :root {
+      --background: 0 0% 100%;
+      --foreground: 240, 3%, 12%;
+      --card: 0 0% 100%;
+      --card-foreground: 240, 3%, 12%;
+      --popover: 0 0% 100%;
+      --popover-foreground: 240, 3%, 12%;
+      --primary: 214, 82%, 51%;
+      --primary-foreground: 0 0% 98%;
+      --secondary: 240 4.8% 95.9%;
+      --secondary-foreground: 214, 82%, 51%;
+      --muted: 240 4.8% 95.9%;
+      --muted-foreground: 240 3.8% 46.1%;
+      --accent: 240 4.8% 95.9%;
+      --accent-foreground: 214, 82%, 51%;
+      --destructive: 0 84.2% 60.2%;
+      --destructive-foreground: 0 0% 98%;
+      --border: 240 5.9% 90%;
+      --input: 240 5.9% 90%;
+      --ring: 214, 82%, 51%;
+      --radius: 0.5rem;
+      --chart-1: 12 76% 61%;
+      --chart-2: 173 58% 39%;
+      --chart-3: 197 37% 24%;
+      --chart-4: 43 74% 66%;
+      --chart-5: 27 87% 67%;
+      
+      /* Figma设计稿变量系统 */
+      
+      /* 文本颜色变量 */
+      --Text-text1: #242426;
+      --Text-text1-80: rgba(36, 36, 38, 0.8);   /* 80%透明度 */
+      --Text-text1-35: rgba(36, 36, 38, 0.35);  /* 35%透明度 */
+      --Text-text3: rgba(36, 36, 38, 0.60);
+      --Blue-blue2: #06A6D7;
+      --Text-white1: #FFFFFF;
+      --Bg-bg2: #EAEAEB;
+      
+      /* 字号变量 - 移动端默认值 */
+      --Fontsize-Body-3: 16px;
+      --Fontsize-Body-4: 14px;       /* 建议区域描述文字 */
+      --Fontsize-Display-4: 28px;    /* 移动端28px */
+      --Fontsize-Display-6: 16px;    /* 建议区域标题 */
+      --Fontsize-Display-7: 24px;    /* 移动端完成状态文本 */
+      --Fontsize-Display-8: 18px;    /* 建议区域标题 */
+      
+      /* 行高变量 - 移动端默认值 */
+      --Line-height-Body-3: 22px;    /* 137.5% */
+      --Line-height-Body-4: 20px;    /* 130% - 建议区域描述文字 */
+      --Line-height-Display-4: 36px; /* 128.571% - 移动端36px */
+      --Line-height-Display-6: 22px; /* 133.33% - 建议区域标题 */
+      --Line-height-Display-7: 32px; /* 130% - 移动端完成状态文本 */
+      --Line-height-Display-8: 24px; /* 130% - 建议区域标题 */
+      
+      /* 字体变量 */
+      --font-brand: 'Manrope', Arial, Helvetica, sans-serif;
+    }
+    
+    /* PC端变量覆盖 */
+    @media (min-width: 744px) {
+      :root {
+        /* PC端字号和行高 */
+        --Fontsize-Display-4: 40px;    /* PC端40px */
+        --Line-height-Display-4: 52px; /* PC端52px */
+        --Fontsize-Display-7: 32px;    /* PC端32px */
+        --Line-height-Display-7: 42px; /* PC端42px */
+        --Fontsize-Display-6: 20px;    /* PC端20px */
+        --Line-height-Display-6: 26px; /* PC端26px */
+        --Fontsize-Display-8: 24px;    /* PC端24px */
+        --Line-height-Display-8: 32px; /* PC端32px */
+      }
+    }
+  
+    .dark {
+      --background: 240 3% 12%;
+      --foreground: 0 0% 98%;
+      --card: 220 7% 8%;
+      --card-foreground: 0 0% 98%;
+      --popover: 220 7% 8%;
+      --popover-foreground: 0 0% 98%;
+      --primary: 217 91% 60%;
+      --primary-foreground: 0 0% 98%;
+      --secondary: 240 3% 12%;
+      --secondary-foreground: 0 0% 98%;
+      --muted: 240 3% 12%;
+      --muted-foreground: 215 20.2% 65.1%;
+      --accent: 240 3% 12%;
+      --accent-foreground: 0 0% 98%;
+      --destructive: 0 62.8% 30.6%;
+      --destructive-foreground: 0 0% 98%;
+      --border: 225 9% 15%;
+      --input: 225 9% 15%;
+      --ring: 224 76.3% 48%;
+      --chart-1: 220 70% 50%;
+      --chart-2: 160 60% 45%;
+      --chart-3: 30 80% 55%;
+      --chart-4: 280 65% 60%;
+      --chart-5: 340 75% 55%;
+    }
+  }
+  
+@layer base {
+  html {
+    font-size: 16px;
+  }
+  * {
+    @apply border-border;
+  }
+  body {
+    @apply bg-background text-foreground;
+  }
+}

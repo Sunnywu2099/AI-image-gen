@@ -1,0 +1,65 @@
+{
+  "home": {
+    "title": "Éditeur d'images",
+    "description": "Outil de conception de piscine propulsé par Gemini 2.5 Nano Banana"
+  },
+  "upload": {
+    "badge": "Concepteur de piscine IA gratuit",
+    "headline": "Votre piscine de rêve, conçue par l'IA.",
+    "description": "Qu'il s'agisse de transformer votre jardin en piscine avec des coûts réalistes, ou d'ajouter un décor élégant à votre piscine avec des noms détaillés — l'IA simplifie tout.",
+    "ctaPrefix": "Téléchargez votre image de jardin ou de piscine",
+    "ctaOr": " ou ",
+    "ctaBackyard": "jardin",
+    "ctaPool": "piscine",
+    "fileFormatHint": "Le fichier doit être JPEG, JPG, PNG ou WebP et jusqu'à 3 Mo",
+    "fileTooLarge": "La taille du fichier dépasse 3 Mo. Veuillez choisir un fichier plus petit.",
+    "subscribeTitle": "Abonnez-vous à la newsletter pour continuer",
+    "emailPlaceholder": "Entrez votre adresse e-mail",
+    "subscribe": "S'abonner",
+    "ctaReupload": "Re-télécharger"
+  },
+  "processing": {
+    "designing": "Veuillez patienter...",
+    "completed": "Votre nouvelle piscine est prête",
+    "magic": "La magie opère",
+    "subscribeTitle": "Abonnez-vous à la newsletter pour continuer",
+    "emailPlaceholder": "Entrez votre adresse e-mail",
+    "emailRequired": "Veuillez entrer une adresse e-mail",
+    "emailInvalid": "Veuillez entrer une adresse e-mail valide",
+    "subscribe": "S'abonner",
+    "suggestion": {
+      "title": "Suggestion de conception de piscine",
+      "desc": "Description de la conception",
+      "materials": "Suggestions de matériaux",
+      "cost": "Estimation des coûts",
+      "construction": "Conseils de construction"
+    }
+  },
+  "result": {
+    "completed": "Votre nouvelle piscine est prête",
+    "subscribeTitle": "Abonnez-vous à la newsletter pour continuer",
+    "emailPlaceholder": "Entrez votre adresse e-mail",
+    "subscribe": "S'abonner",
+    "download": "Télécharger",
+    "toggleHistoryShow": "Afficher l'historique",
+    "toggleHistoryHide": "Masquer l'historique",
+    "createNew": "Créer une nouvelle image",
+    "historyTitle": "Historique de conversation",
+    "roleUser": "Vous",
+    "roleModel": "Gemini"
+  },
+  "prompt": {
+    "describeEdit": "Décrivez comment vous souhaitez modifier l'image",
+    "describeGenerate": "Décrivez l'image que vous souhaitez générer",
+    "placeholderEdit": "Exemple : Rendez le fond bleu et ajoutez un arc-en-ciel...",
+    "placeholderGenerate": "Exemple : Une image 3D d'un cochon avec des ailes...",
+    "edit": "Modifier l'image",
+    "generate": "Générer l'image"
+  },
+  "errors": {
+    "noImage": "Aucune image retournée par l'API",
+    "failedGenerate": "Échec de la génération de l'image",
+    "subscriptionFailed": "Échec de l'abonnement",
+    "generic": "Une erreur est survenue"
+  }
+}

@@ -1,0 +1,65 @@
+{
+  "home": {
+    "title": "Bildbearbeitung",
+    "description": "Pool-Design-Tool betrieben von Gemini 2.5 Nano Banana"
+  },
+  "upload": {
+    "badge": "Kostenloser KI-Pool-Designer",
+    "headline": "Ihr Traum-Pool, entworfen von KI.",
+    "description": "Ob Sie Ihren Hinterhof in einen Pool mit realistischen Kosten verwandeln oder Ihrem Pool stilvolles Dekor mit detaillierten Namen hinzufügen möchten – KI macht es einfach.",
+    "ctaPrefix": "Laden Sie Ihr Hinterhof- oder Poolbild hoch",
+    "ctaOr": " oder ",
+    "ctaBackyard": "Hinterhof",
+    "ctaPool": "Pool",
+    "fileFormatHint": "Datei muss JPEG, JPG, PNG oder WebP sein und bis zu 3MB groß",
+    "fileTooLarge": "Dateigröße überschreitet 3MB. Bitte wählen Sie eine kleinere Datei.",
+    "subscribeTitle": "Abonnieren Sie den Newsletter, um fortzufahren",
+    "emailPlaceholder": "E-Mail-Adresse eingeben",
+    "subscribe": "Abonnieren",
+    "ctaReupload": "Erneut hochladen"
+  },
+  "processing": {
+    "designing": "Bitte warten...",
+    "completed": "Ihr neuer Pool ist fertig",
+    "magic": "Magie geschieht",
+    "subscribeTitle": "Abonnieren Sie den Newsletter, um fortzufahren",
+    "emailPlaceholder": "E-Mail-Adresse eingeben",
+    "emailRequired": "Bitte geben Sie eine E-Mail-Adresse ein",
+    "emailInvalid": "Bitte geben Sie eine gültige E-Mail-Adresse ein",
+    "subscribe": "Abonnieren",
+    "suggestion": {
+      "title": "Pool-Design-Vorschlag",
+      "desc": "Design-Beschreibung",
+      "materials": "Materialvorschläge",
+      "cost": "Kostenschätzung",
+      "construction": "Bautipps"
+    }
+  },
+  "result": {
+    "completed": "Ihr neuer Pool ist fertig",
+    "subscribeTitle": "Abonnieren Sie den Newsletter, um fortzufahren",
+    "emailPlaceholder": "E-Mail-Adresse eingeben",
+    "subscribe": "Abonnieren",
+    "download": "Herunterladen",
+    "toggleHistoryShow": "Verlauf anzeigen",
+    "toggleHistoryHide": "Verlauf verbergen",
+    "createNew": "Neues Bild erstellen",
+    "historyTitle": "Gesprächsverlauf",
+    "roleUser": "Sie",
+    "roleModel": "Gemini"
+  },
+  "prompt": {
+    "describeEdit": "Beschreiben Sie, wie Sie das Bild bearbeiten möchten",
+    "describeGenerate": "Beschreiben Sie das Bild, das Sie generieren möchten",
+    "placeholderEdit": "Beispiel: Machen Sie den Hintergrund blau und fügen Sie einen Regenbogen hinzu...",
+    "placeholderGenerate": "Beispiel: Ein 3D-gerendertes Bild eines Schweins mit Flügeln...",
+    "edit": "Bild bearbeiten",
+    "generate": "Bild generieren"
+  },
+  "errors": {
+    "noImage": "Kein Bild von der API zurückgegeben",
+    "failedGenerate": "Bild konnte nicht generiert werden",
+    "subscriptionFailed": "Abonnement fehlgeschlagen",
+    "generic": "Ein Fehler ist aufgetreten"
+  }
+}

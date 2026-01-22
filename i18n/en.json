@@ -1,0 +1,67 @@
+{
+  "home": {
+    "title": "Image Editor",
+    "description": "Pool design tool powered by Gemini 2.5 Nano Banana"
+  },
+  "upload": {
+    "badge": "Free AI Pool Designer",
+    "headline": "Your dream pool, designed by AI.",
+    "description": "Whether it's turning your backyard into a pool with realistic costs, or adding stylish décor to your pool with detailed names — AI makes it simple.",
+    "ctaPrefix": "Upload your backyard or pool image",
+    "ctaOr": " or ",
+    "ctaBackyard": "backyard",
+    "ctaPool": "pool",
+    "fileFormatHint": "File must be JPEG, JPG, PNG or WebP and up to 3MB",
+    "fileTooLarge": "File size exceeds 3MB limit. Please choose a smaller file.",
+    "subscribeTitle": "Subscribe newsletter to continue",
+    "emailPlaceholder": "Enter email address",
+    "subscribe": "Subscribe",
+    "ctaReupload": "Re-upload"
+  },
+  "processing": {
+    "designing": "Please wait...",
+    "completed": "Your new pool is ready",
+    "magic": "Magic is happening",
+    "subscribeTitle": "Subscribe newsletter to continue",
+    "emailPlaceholder": "Enter email address ",
+    "emailRequired": "Please enter an email address",
+    "emailInvalid": "Please enter a valid email address",
+    "subscribe": "Subscribe",
+    "suggestion": {
+      "title": "Pool Design Suggestion",
+      "desc": "Design Description",
+      "materials": "Material Suggestions",
+      "cost": "Cost Estimate",
+      "construction": "Construction Tips"
+    }
+  },
+  "result": {
+    "completed": "Your new pool is ready",
+    "subscribeTitle": "Subscribe newsletter to continue",
+    "emailPlaceholder": "Enter email address",
+    "subscribe": "Subscribe",
+    "download": "Download",
+    "toggleHistoryShow": "Show History",
+    "toggleHistoryHide": "Hide History",
+    "createNew": "Create New Image",
+    "historyTitle": "Conversation History",
+    "roleUser": "You",
+    "roleModel": "Gemini"
+  },
+  "prompt": {
+    "describeEdit": "Describe how you want to edit the image",
+    "describeGenerate": "Describe the image you want to generate",
+    "placeholderEdit": "Example: Make the background blue and add a rainbow...",
+    "placeholderGenerate": "Example: A 3D rendered image of a pig with wings and a top hat flying over a futuristic city...",
+    "edit": "Edit Image",
+    "generate": "Generate Image"
+  },
+  "errors": {
+    "noImage": "No image returned from API",
+    "failedGenerate": "Failed to generate image",
+    "subscriptionFailed": "Subscription failed",
+    "generic": "An error occurred"
+  }
+}
+
+
