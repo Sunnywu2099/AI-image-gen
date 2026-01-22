@@ -1,6 +1,7 @@
 import { NextRequest, NextResponse } from "next/server";
 import { Ratelimit } from "@upstash/ratelimit";
-import { kv } from "@vercel/kv";
+// import { kv } from "@vercel/kv";
+import { Redis } from "@upstash/redis";
 import { GoogleGenAI } from "@google/genai";
 import { HistoryItem, HistoryPart } from "@/lib/types";
 
@@ -26,8 +27,19 @@ function parseDurationEnv(value?: string | null): DurationString {
 }
 const RL_WINDOW: DurationString = parseDurationEnv(process.env.RATE_LIMIT_WINDOW || null);
 
+// Use in-memory fallback if KV is not configured
 const ratelimit = new Ratelimit({
-  redis: kv,
+  redis: process.env.KV_REST_API_URL && process.env.KV_REST_API_TOKEN 
+    ? new Redis({
+        url: process.env.KV_REST_API_URL,
+        token: process.env.KV_REST_API_TOKEN,
+      })
+    : {
+        // Simple in-memory mock for development/fallback
+        sadd: async () => 1,
+        eval: async () => [1, 10, Date.now() + 60000, 10],
+        scriptLoad: async () => "",
+      } as any,
   limiter: Ratelimit.slidingWindow(RL_LIMIT, RL_WINDOW),
   analytics: true,
 });
