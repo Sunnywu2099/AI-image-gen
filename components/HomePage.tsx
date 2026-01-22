@@ -3,17 +3,17 @@ import { useState, useEffect } from "react";
 import { ImageUpload } from "@/components/ImageUpload";
 import { ProcessingView } from "@/components/ProcessingView";
 import { HistoryItem, DesignDetails } from "@/lib/types";
-import { trackInteraction, trackConversion, trackError } from "@/lib/ptengine";
+// import { trackInteraction, trackConversion, trackError } from "@/lib/ptengine";
 
 export function HomePage({ region }: { region?: string }) {
   const [image, setImage] = useState<string | null>(null);
   
-  useEffect(() => {
-    if (region) {
-      // eslint-disable-next-line @typescript-eslint/no-explicit-any
-      (window as any).__REGION = region;
-    }
-  }, [region]);
+  // useEffect(() => {
+  //   if (region) {
+  //     // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  //     (window as any).__REGION = region;
+  //   }
+  // }, [region]);
 
   const [generatedImage, setGeneratedImage] = useState<string | null>(null);
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
@@ -92,10 +92,10 @@ export function HomePage({ region }: { region?: string }) {
 
         if (data.image) {
           // 追踪图片生成成功（转化事件）
-          trackConversion('image_generation', {
-            has_history: history.length > 0,
-            generation_type: 'initial'
-          });
+          // trackConversion('image_generation', {
+          //   has_history: history.length > 0,
+          //   generation_type: 'initial'
+          // });
           
           // Update the generated image, description and design details
           setGeneratedImage(data.image);
@@ -123,17 +123,17 @@ export function HomePage({ region }: { region?: string }) {
           // Update history with both messages
           setHistory((prevHistory) => [...prevHistory, userMessage, aiResponse]);
         } else {
-          trackError('image_generation_no_result', {
-            generation_type: 'initial'
-          });
+          // trackError('image_generation_no_result', {
+          //   generation_type: 'initial'
+          // });
           setError("No image returned from API");
         }
       } catch (error) {
         // 追踪图片生成错误
-        trackError('image_generation_failed', {
-          error_message: error instanceof Error ? error.message : 'Unknown error',
-          generation_type: 'initial'
-        });
+        // trackError('image_generation_failed', {
+        //   error_message: error instanceof Error ? error.message : 'Unknown error',
+        //   generation_type: 'initial'
+        // });
         setError(error instanceof Error ? error.message : "An error occurred");
         console.error("Error processing request:", error);
       } finally {
@@ -146,9 +146,9 @@ export function HomePage({ region }: { region?: string }) {
   // 重置状态为新一轮流程，并不携带旧的对话历史
   const handleReplaceImage = async (imageData: string) => {
     // 追踪替换图片并重新生成
-    trackInteraction('replace_and_regenerate', {
-      had_previous_generation: !!generatedImage
-    });
+    // trackInteraction('replace_and_regenerate', {
+    //   had_previous_generation: !!generatedImage
+    // });
     
     // 先更新当前原图，UI 即刻反映
     setImage(imageData || null);
@@ -185,10 +185,10 @@ export function HomePage({ region }: { region?: string }) {
 
         if (data.image) {
           // 追踪替换后重新生成成功
-          trackConversion('image_generation', {
-            has_history: false,
-            generation_type: 'replace'
-          });
+          // trackConversion('image_generation', {
+          //   has_history: false,
+          //   generation_type: 'replace'
+          // });
           
           setGeneratedImage(data.image);
           setDescription(data.description || null);
@@ -212,16 +212,16 @@ export function HomePage({ region }: { region?: string }) {
 
           setHistory([userMessage, aiResponse]);
         } else {
-          trackError('image_generation_no_result', {
-            generation_type: 'replace'
-          });
+          // trackError('image_generation_no_result', {
+          //   generation_type: 'replace'
+          // });
           setError("No image returned from API");
         }
       } catch (error) {
-        trackError('image_generation_failed', {
-          error_message: error instanceof Error ? error.message : 'Unknown error',
-          generation_type: 'replace'
-        });
+        // trackError('image_generation_failed', {
+        //   error_message: error instanceof Error ? error.message : 'Unknown error',
+        //   generation_type: 'replace'
+        // });
         setError(error instanceof Error ? error.message : "An error occurred");
         console.error("Error processing request:", error);
       } finally {
@@ -303,9 +303,9 @@ export function HomePage({ region }: { region?: string }) {
       setError(null);
       
       // 追踪订阅请求
-      trackInteraction('subscription_request', {
-        email
-      });
+      // trackInteraction('subscription_request', {
+      //   email
+      // });
       
       const response = await fetch("/api/subscribe", {
         method: "POST",
@@ -317,9 +317,9 @@ export function HomePage({ region }: { region?: string }) {
         .catch(() => ({ success: response.ok }));
       if (!response.ok || data?.success === false) {
         const errorMsg = data?.error || "Failed to subscribe";
-        trackError('subscription_api_failed', {
-          error_message: errorMsg
-        });
+        // trackError('subscription_api_failed', {
+        //   error_message: errorMsg
+        // });
         throw new Error(errorMsg);
       }
       
@@ -327,9 +327,9 @@ export function HomePage({ region }: { region?: string }) {
       setIsSubscribed(true);
     } catch (e) {
       const errorMsg = e instanceof Error ? e.message : "Subscription failed";
-      trackError('subscription_error', {
-        error_message: errorMsg
-      });
+      // trackError('subscription_error', {
+      //   error_message: errorMsg
+      // });
       setError(errorMsg);
     }
   };

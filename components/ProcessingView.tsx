@@ -62,17 +62,17 @@ export function ProcessingView({
     if (!file) return;
     
     // 追踪替换图片尝试
-    trackInteraction('replace_image_attempt', {
-      file_name: file.name,
-      file_size: file.size,
-      file_type: file.type
-    });
+    // trackInteraction('replace_image_attempt', {
+    //   file_name: file.name,
+    //   file_size: file.size,
+    //   file_type: file.type
+    // });
     
     // 检查文件大小限制 (3MB)
     if (file.size > 3 * 1024 * 1024) {
-      trackError('replace_image_file_too_large', {
-        file_size: file.size
-      });
+      // trackError('replace_image_file_too_large', {
+      //   file_size: file.size
+      // });
       onError?.(t('upload.fileTooLarge'));
       return;
     }
@@ -82,18 +82,18 @@ export function ProcessingView({
     reader.onload = (event) => {
       const result = event.target?.result as string;
       // 追踪替换图片成功
-      trackInteraction('replace_image_success', {
-        file_name: file.name,
-        file_size: file.size
-      });
+      // trackInteraction('replace_image_success', {
+      //   file_name: file.name,
+      //   file_size: file.size
+      // });
       onReplaceImage?.(result);
       // 清空文件选择，便于再次选择同一文件也能触发 onChange
       inputEl.value = "";
     };
     reader.onerror = () => {
-      trackError('replace_image_read_error', {
-        file_name: file.name
-      });
+      // trackError('replace_image_read_error', {
+      //   file_name: file.name
+      // });
       inputEl.value = "";
     };
     reader.readAsDataURL(file);
@@ -127,6 +127,12 @@ export function ProcessingView({
     }, 1000);
     return () => clearTimeout(timer);
   }, [email, t]);
+
+  useEffect(() => {
+    if (designDetails) {
+      setShowDesignDetails(true);
+    }
+  }, [designDetails]);
 
   const handleSubscribe = async () => {
     const v = email.trim();

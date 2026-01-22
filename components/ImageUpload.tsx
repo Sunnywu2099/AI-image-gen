@@ -6,7 +6,7 @@ import { useDropzone } from "react-dropzone";
 import { Button } from "./ui/button";
 import { Image as ImageIcon, X } from "lucide-react";
 import { ImageCarousel } from "./ImageCarousel";
-import { trackInteraction, trackPageView, trackError } from "@/lib/ptengine";
+// import { trackInteraction, trackPageView, trackError } from "@/lib/ptengine";
 
 interface ImageUploadProps {
   onImageSelect: (imageData: string) => void;
@@ -52,13 +52,13 @@ export function ImageUpload({ onImageSelect, currentImage, onError }: ImageUploa
   // 追踪页面浏览
   useEffect(() => {
     if (!currentImage) {
-      trackPageView('upload_page', {
-        step: 'initial'
-      });
+      // trackPageView('upload_page', {
+      //   step: 'initial'
+      // });
     } else {
-      trackPageView('upload_page', {
-        step: 'image_selected'
-      });
+      // trackPageView('upload_page', {
+      //   step: 'image_selected'
+      // });
     }
   }, [currentImage]);
 
@@ -74,10 +74,10 @@ export function ImageUpload({ onImageSelect, currentImage, onError }: ImageUploa
       if (fileRejections?.length > 0) {
         const error = fileRejections[0].errors[0];
         // 追踪文件上传错误
-        trackError('file_upload_rejected', {
-          error_type: error.code,
-          error_message: error.message
-        });
+        // trackError('file_upload_rejected', {
+        //   error_type: error.code,
+        //   error_message: error.message
+        // });
         onError?.(error.message);
         return;
       }
@@ -86,11 +86,11 @@ export function ImageUpload({ onImageSelect, currentImage, onError }: ImageUploa
       if (!file) return;
 
       // 追踪文件选择
-      trackInteraction('file_selected', {
-        file_name: file.name,
-        file_size: file.size,
-        file_type: file.type
-      });
+      // trackInteraction('file_selected', {
+      //   file_name: file.name,
+      //   file_size: file.size,
+      //   file_type: file.type
+      // });
 
       setSelectedFile(file);
       setIsLoading(true);
@@ -101,20 +101,20 @@ export function ImageUpload({ onImageSelect, currentImage, onError }: ImageUploa
         if (event.target && event.target.result) {
           const result = event.target.result as string;
           // 追踪图片上传成功
-          trackInteraction('image_uploaded', {
-            file_name: file.name,
-            file_size: file.size,
-            file_type: file.type
-          });
+          // trackInteraction('image_uploaded', {
+          //   file_name: file.name,
+          //   file_size: file.size,
+          //   file_type: file.type
+          // });
           onImageSelect(result);
         }
         setIsLoading(false);
       };
       reader.onerror = () => {
         // 追踪文件读取错误
-        trackError('file_read_error', {
-          file_name: file.name
-        });
+        // trackError('file_read_error', {
+        //   file_name: file.name
+        // });
         onError?.("Error reading file. Please try again.");
         setIsLoading(false);
       };
@@ -135,10 +135,6 @@ export function ImageUpload({ onImageSelect, currentImage, onError }: ImageUploa
   });
 
   const handleRemove = () => {
-    // 追踪移除图片
-    trackInteraction('image_removed', {
-      file_name: selectedFile?.name
-    });
     setSelectedFile(null);
     onImageSelect("");
   };
