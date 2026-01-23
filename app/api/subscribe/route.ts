@@ -3,8 +3,6 @@ import { NextRequest, NextResponse } from "next/server";
 // Migrate to Klaviyo JSON:API
 // Flow: find or create profile -> add profile to list via relationships endpoint
 
-const KLAVIYO_API_KEY = process.env.KLAVIYO_PRIVATE_API_KEY || process.env.KLAVIYO_API_KEY || "";
-const KLAVIYO_LIST_ID = process.env.KLAVIYO_LIST_ID || "";
 const KLAVIYO_API_REVISION = process.env.KLAVIYO_API_REVISION || "2024-10-15";
 
 type LocationInfo = {
@@ -166,12 +164,7 @@ async function addProfileToList(listId: string, profileId: string, apiKey: strin
 
 export async function POST(req: NextRequest) {
   try {
-    if (!KLAVIYO_API_KEY || !KLAVIYO_LIST_ID) {
-      return NextResponse.json(
-        { success: false, error: "Klaviyo API configuration missing (KLAVIYO_PRIVATE_API_KEY and/or KLAVIYO_LIST_ID)." },
-        { status: 500 }
-      );
-    }
+
 
     const body = await req.json().catch(() => null);
     if (!body || typeof body.email !== "string") {
