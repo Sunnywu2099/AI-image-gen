@@ -254,21 +254,30 @@ please return an image and provide helpful information in this JSON format:
       // Generate the content
       const aiClient = getAIClient();
       if (!aiClient) {
+        console.error("GEMINI_API_KEY missing when getting client");
         throw new Error("GEMINI_API_KEY is not configured");
       }
 
+      console.log("Calling Gemini API with model:", MODEL_ID);
       response = await aiClient.models.generateContent({
         model: MODEL_ID,
         contents,
         config: {
-          temperature: 1.2,  // Balanced creativity (Gemini 2.5 default is 1.0, slightly increased for pool design creativity)
-          topP: 0.95,        // Good diversity while maintaining quality (0-1 range)
-          topK: 50,          // Reasonable token selection range for varied but coherent outputs
+          temperature: 1.2,
+          topP: 0.95,
+          topK: 50,
         },
       });
+      console.log("Gemini API call successful");
     } catch (error) {
       console.error("Error in chat.sendMessage:", error);
       const errorMessage = error instanceof Error ? error.message : "Unknown error in AI processing";
+      
+      // Check for common error types
+      if (errorMessage.includes("403") || errorMessage.includes("permission")) {
+        console.error("Permission denied error from Gemini API. Check API key and service enablement.");
+      }
+      
       return NextResponse.json(
         { success: false, error: "Gemini API error", details: errorMessage },
         { status: 500 }
