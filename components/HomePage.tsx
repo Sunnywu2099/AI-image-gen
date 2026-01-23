@@ -6,6 +6,19 @@ import { HistoryItem, DesignDetails } from "@/lib/types";
 // import { trackInteraction, trackConversion, trackError } from "@/lib/ptengine";
 
 export function HomePage({ region }: { region?: string }) {
+  const [currentRegion, setCurrentRegion] = useState(region);
+
+  useEffect(() => {
+    // 从 URL 参数中获取 lang 参数
+    if (typeof window !== 'undefined') {
+      const params = new URLSearchParams(window.location.search);
+      const lang = params.get('lang');
+      if (lang) {
+        setCurrentRegion(lang);
+      }
+    }
+  }, []);
+
   const [image, setImage] = useState<string | null>(null);
   
   // useEffect(() => {
@@ -321,7 +334,7 @@ export function HomePage({ region }: { region?: string }) {
       const response = await fetch("/api/subscribe", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ email, region }),
+        body: JSON.stringify({ email, region: currentRegion }),
       });
       const data = await response
         .json()
