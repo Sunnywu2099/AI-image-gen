@@ -145,6 +145,11 @@ export function HomePage({ region }: { region?: string }) {
   // 用于 ProcessingView 完成后点击左侧原图进行替换的逻辑：
   // 重置状态为新一轮流程，并不携带旧的对话历史
   const handleReplaceImage = async (imageData: string) => {
+    // Prevent duplicate API calls if the image hasn't changed
+    if (imageData === image && generatedImage) {
+      return;
+    }
+
     // 追踪替换图片并重新生成
     // trackInteraction('replace_and_regenerate', {
     //   had_previous_generation: !!generatedImage
@@ -157,7 +162,8 @@ export function HomePage({ region }: { region?: string }) {
     setGeneratedImage(null);
     setDescription(null);
     setDesignDetails(null);
-    setIsSubscribed(false);
+    // Don't reset subscription status if already subscribed
+    // setIsSubscribed(false); 
     setError(null);
     setHistory([]);
 

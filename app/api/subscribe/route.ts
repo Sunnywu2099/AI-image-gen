@@ -182,12 +182,30 @@ export async function POST(req: NextRequest) {
     }
 
     // Determine keys based on region
-    let apiKey = KLAVIYO_API_KEY;
-    let listId = KLAVIYO_LIST_ID;
+    let apiKey = process.env.KLAVIYO_API_KEY_EU || process.env.KLAVIYO_API_KEY || "";
+    let listId = process.env.KLAVIYO_LIST_ID_EU || process.env.KLAVIYO_LIST_ID || "";
     
-    if (body.region && (String(body.region).toLowerCase() === 'eu' || String(body.region).toLowerCase() === 'europe')) {
-       if (process.env.KLAVIYO_API_KEY_EU) apiKey = process.env.KLAVIYO_API_KEY_EU;
-       if (process.env.KLAVIYO_LIST_ID_EU) listId = process.env.KLAVIYO_LIST_ID_EU;
+    if (body.region) {
+      const region = String(body.region).toLowerCase();
+      switch (region) {
+        case 'de':
+          if (process.env.KLAVIYO_API_KEY_DE) apiKey = process.env.KLAVIYO_API_KEY_DE;
+          if (process.env.KLAVIYO_LIST_ID_DE) listId = process.env.KLAVIYO_LIST_ID_DE;
+          break;
+        case 'fr':
+          if (process.env.KLAVIYO_API_KEY_FR) apiKey = process.env.KLAVIYO_API_KEY_FR;
+          if (process.env.KLAVIYO_LIST_ID_FR) listId = process.env.KLAVIYO_LIST_ID_FR;
+          break;
+        case 'es':
+          if (process.env.KLAVIYO_API_KEY_ES) apiKey = process.env.KLAVIYO_API_KEY_ES;
+          if (process.env.KLAVIYO_LIST_ID_ES) listId = process.env.KLAVIYO_LIST_ID_ES;
+          break;
+        case 'it':
+          if (process.env.KLAVIYO_API_KEY_IT) apiKey = process.env.KLAVIYO_API_KEY_IT;
+          if (process.env.KLAVIYO_LIST_ID_IT) listId = process.env.KLAVIYO_LIST_ID_IT;
+          break;
+        // Default to EU for 'eu' or any other value
+      }
     }
 
     if (!apiKey || !listId) {
