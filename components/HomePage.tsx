@@ -59,6 +59,11 @@ export function HomePage({ region }: { region?: string }) {
   }, []);
 
   const handleImageSelect = async (imageData: string) => {
+    // Prevent duplicate API calls if the image hasn't changed
+    if (imageData === image && generatedImage) {
+      return;
+    }
+
     setImage(imageData || null);
     
     // 立即开始处理图片生成

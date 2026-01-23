@@ -182,7 +182,7 @@ export async function POST(req: NextRequest) {
     }
 
     // Determine keys based on region
-    let apiKey = process.env.KLAVIYO_API_KEY_EU || process.env.KLAVIYO_API_KEY || "";
+    let apiKey = process.env.KLAVIYO_API_KEY_EU || process.env.KLAVIYO_PRIVATE_API_KEY || process.env.KLAVIYO_API_KEY || "";
     let listId = process.env.KLAVIYO_LIST_ID_EU || process.env.KLAVIYO_LIST_ID || "";
     
     if (body.region) {
