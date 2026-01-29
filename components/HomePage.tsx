@@ -90,7 +90,12 @@ export function HomePage({ region }: { region?: string }) {
           // Optimized prompt: Direct generation instruction with intelligent adaptation
           prompt: fullPrompt,
           image: imageToUse,
-          history: history.length > 0 ? history : undefined,
+          // 优化：发送历史记录时，不要再次包含 base64 图片，否则请求体过大
+          // 仅发送文本部分的对话历史
+          history: history.length > 0 ? history.map(item => ({
+            role: item.role,
+            parts: item.parts.filter(p => p.text && !p.image) // 过滤掉历史记录中的图片
+          })).filter(item => item.parts.length > 0) : undefined,
         };
 
         const response = await fetch("/api/image", {

@@ -132,6 +132,9 @@ export async function POST(req: NextRequest) {
       );
     }
 
+    // 检查 payload 大小，如果过大（Vercel 限制通常为 4.5MB），可能会被截断导致 JSON 解析失败
+    // 但上面的 catch 已经处理了 JSON 解析失败
+    // 这里我们直接解构数据
     const { prompt, image: inputImage, history } = requestData;
 
     if (!prompt) {
