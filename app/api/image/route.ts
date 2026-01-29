@@ -43,6 +43,7 @@ function getAIClient() {
 
   const options: any = {
     apiKey: GOOGLE_AI_STUDIO_TOKEN,
+    vertexai: true,
   };
 
   // 只有在明确需要使用 Cloudflare Gateway 且确定不是 Vertex AI 时才设置 baseUrl
