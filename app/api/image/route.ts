@@ -6,9 +6,9 @@ import { HistoryItem, HistoryPart } from "@/lib/types";
 
 // Initialize the Google AI Studio client through Cloudflare AI Gateway
 const GOOGLE_AI_STUDIO_TOKEN = process.env.GOOGLE_AI_STUDIO_TOKEN || process.env.GEMINI_API_KEY || "";
-const CF_ACCOUNT_ID = process.env.CF_ACCOUNT_ID || process.env.CF_AIG_ACCOUNT_ID || "";
-const CF_GATEWAY_NAME = process.env.CF_GATEWAY_NAME || process.env.CF_AIG_GATEWAY || "";
-const CF_AIG_TOKEN = process.env.CF_AIG_TOKEN || "";
+// const CF_ACCOUNT_ID = process.env.CF_ACCOUNT_ID || process.env.CF_AIG_ACCOUNT_ID || "";
+// const CF_GATEWAY_NAME = process.env.CF_GATEWAY_NAME || process.env.CF_AIG_GATEWAY || "";
+// const CF_AIG_TOKEN = process.env.CF_AIG_TOKEN || "";
 
 // Global rate limiter (Vercel 官方推荐：Upstash Ratelimit + Vercel KV)
 // 默认：每分钟 10 次，可通过环境变量覆盖
@@ -48,11 +48,13 @@ function getAIClient() {
   // 只有在明确需要使用 Cloudflare Gateway 且确定不是 Vertex AI 时才设置 baseUrl
   // 但目前错误提示 "API keys are not supported by this API" 通常是因为被误识别为 Vertex AI
   // 或者 BaseURL 指向了错误的服务端点
-  if (CF_ACCOUNT_ID && CF_GATEWAY_NAME) {
+  /*
+  // if (CF_ACCOUNT_ID && CF_GATEWAY_NAME) {
     // 确保 URL 格式正确，Google AI Studio 的 gateway URL 格式可能有所不同
     // 这里先暂时注释掉 Cloudflare 配置，直接直连 Google，排除 Gateway 配置错误的可能性
     // options.baseUrl = `https://gateway.ai.cloudflare.com/v1/${CF_ACCOUNT_ID}/${CF_GATEWAY_NAME}/google-ai-studio`;
-  }
+  // }
+  */
 
   ai = new GoogleGenAI(options);
   return ai;
@@ -269,6 +271,10 @@ please return an image and provide helpful information in this JSON format:
       }
 
       console.log("Calling Gemini API with model:", MODEL_ID);
+      
+      // 注意：使用 REST API 风格的调用，避免 Vertex AI 混淆
+      // 如果您的 key 是 Google AI Studio 的，确保不要设置任何 vertex 相关参数
+      // 强制使用 Google AI Studio 的 Endpoint
       response = await aiClient.models.generateContent({
         model: MODEL_ID,
         contents,
