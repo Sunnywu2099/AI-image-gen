@@ -41,9 +41,20 @@ function getAIClient() {
     return null;
   }
 
-  ai = new GoogleGenAI({
+  const options: any = {
     apiKey: GOOGLE_AI_STUDIO_TOKEN,
-  });
+  };
+
+  // 只有在明确需要使用 Cloudflare Gateway 且确定不是 Vertex AI 时才设置 baseUrl
+  // 但目前错误提示 "API keys are not supported by this API" 通常是因为被误识别为 Vertex AI
+  // 或者 BaseURL 指向了错误的服务端点
+  if (CF_ACCOUNT_ID && CF_GATEWAY_NAME) {
+    // 确保 URL 格式正确，Google AI Studio 的 gateway URL 格式可能有所不同
+    // 这里先暂时注释掉 Cloudflare 配置，直接直连 Google，排除 Gateway 配置错误的可能性
+    // options.baseUrl = `https://gateway.ai.cloudflare.com/v1/${CF_ACCOUNT_ID}/${CF_GATEWAY_NAME}/google-ai-studio`;
+  }
+
+  ai = new GoogleGenAI(options);
   return ai;
 }
 
