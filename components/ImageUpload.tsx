@@ -42,7 +42,7 @@ export function formatFileSize(bytes: number): string {
 }
 
 
-export function ImageUpload({ onImageSelect, currentImage, onError, isGenerating = false, generatedImage, isSubscribed = false, onSubscribe, designDetails }: ImageUploadProps) {
+export function ImageUpload({ onImageSelect, currentImage, originalImage, onError, isGenerating = false, generatedImage, isSubscribed = false, onSubscribe, designDetails }: ImageUploadProps) {
   const t = useTranslations();
   const [selectedFile, setSelectedFile] = useState<File | null>(null);
   const [isLoading, setIsLoading] = useState(false);
