@@ -1,17 +1,16 @@
-I have identified the root cause: the current SDK `@google/genai` is a unified SDK that supports both Vertex AI and Google AI Studio. Despite our configuration, it seems to be inferring a Vertex AI environment (likely due to Vercel's environment variables or internal SDK logic), which triggers the "API keys are not supported" error because Vertex AI requires OAuth tokens, not API keys.
+为了实现您提到的“无需重新上传图片，仅切换主题即可重新生成”的优化需求，我将执行以下修改：
 
-To permanently resolve this, I will switch to the **`@google/generative-ai`** SDK. This library is exclusively designed for Google AI Studio (API Key based) and does not support Vertex AI, making it physically impossible to trigger this specific authentication error.
+**问题分析**：
+目前用户生成图片后，如果直接修改主题并点击生成，组件内部可能因为无法正确获取到原始上传的图片数据而导致操作失败或报错。
 
-**Plan:**
-1.  **Switch SDKs**:
-    *   Uninstall `@google/genai`.
-    *   Install `@google/generative-ai`.
-2.  **Refactor `app/api/image/route.ts`**:
-    *   Update imports to use `GoogleGenerativeAI`.
-    *   Rewrite the initialization and generation logic to match the `@google/generative-ai` API signatures (which are slightly different but well-documented).
-    *   Ensure image input (base64) and output handling is preserved.
-3.  **Deploy**:
-    *   Commit the changes to `package.json` and `route.ts`.
-    *   Push to GitHub to trigger a Vercel deployment.
+**解决方案**：
+1.  **修改 `HomePage.tsx`**：
+    *   增加一个 `originalImage` 属性传递给 `ImageUpload` 组件，专门用于传输用户最初上传的那张原图（与当前展示的结果图区分开）。
+    *   优化 `handleImageSelect` 函数：增加“兜底”逻辑，如果调用时没有传入新的图片数据，则自动使用之前保存的 `image`（原图）状态，防止因参数缺失导致的报错。
 
-This is the most robust solution to ensure your API Key works as expected.
+2.  **修改 `ImageUpload.tsx`**：
+    *   接收 `originalImage` 属性。
+    *   添加逻辑：如果当前没有预览图但存在 `originalImage`，自动将原图恢复到预览区域。
+    *   优化“生成”按钮的点击逻辑：优先使用预览图，如果缺失则回退使用 `originalImage`，确保只要用户上传过一次，生成功能就始终可用。
+
+这个方案将确保用户体验流畅，避免不必要的报错。

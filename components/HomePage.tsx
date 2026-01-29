@@ -66,11 +66,14 @@ export function HomePage({ region }: { region?: string }) {
   }, []);
 
   const handleImageSelect = async (imageData: string, selectedTheme?: string) => {
-    setImage(imageData || null);
+    // 优先使用传入的图片数据，如果为空则回退使用已保存的原图状态
+    const imageToUse = imageData || image;
+    
+    setImage(imageToUse || null);
     setTheme(selectedTheme || null);
     
     // 立即开始处理图片生成
-    if (imageData) {
+    if (imageToUse) {
       try {
         setLoading(true);
         setError(null);
@@ -86,7 +89,7 @@ export function HomePage({ region }: { region?: string }) {
         const requestData = {
           // Optimized prompt: Direct generation instruction with intelligent adaptation
           prompt: fullPrompt,
-          image: imageData,
+          image: imageToUse,
           history: history.length > 0 ? history : undefined,
         };
 
@@ -236,6 +239,7 @@ export function HomePage({ region }: { region?: string }) {
         <ImageUpload
             onImageSelect={handleImageSelect}
             currentImage={currentImage}
+            originalImage={image} // 传递原始图片数据
             onError={setError}
             isGenerating={loading}
             generatedImage={generatedImage}

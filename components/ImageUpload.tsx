@@ -13,6 +13,7 @@ import ReactMarkdown from "react-markdown";
 interface ImageUploadProps {
   onImageSelect: (imageData: string, theme?: string) => void;
   currentImage: string | null;
+  originalImage?: string | null; // 新增属性：原始图片
   onError?: (error: string) => void;
   isGenerating?: boolean;
   generatedImage?: string | null;
@@ -525,8 +526,9 @@ export function ImageUpload({ onImageSelect, currentImage, onError, isGenerating
                 {/* 生成按钮 */}
                 <button
                   onClick={() => {
-                    if (previewImage) {
-                      // 已有预览图片，开始生成
+                    const imgToUse = previewImage || originalImage;
+                    if (imgToUse) {
+                      // 已有预览图片或原始图片，开始生成
                       const theme = getCurrentTheme();
                       /*
                       trackInteraction('generate_clicked', {
@@ -534,9 +536,9 @@ export function ImageUpload({ onImageSelect, currentImage, onError, isGenerating
                         has_image: true
                       });
                       */
-                      onImageSelect(previewImage, theme);
+                      onImageSelect(imgToUse, theme);
                     } else {
-                      // 没有预览图片，打开文件选择
+                      // 没有图片，打开文件选择
                       open();
                     }
                   }}
