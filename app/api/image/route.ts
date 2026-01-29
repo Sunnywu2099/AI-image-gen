@@ -43,7 +43,6 @@ function getAIClient() {
 
   ai = new GoogleGenAI({
     apiKey: GOOGLE_AI_STUDIO_TOKEN,
-    vertexai: true,
   });
   return ai;
 }
@@ -288,11 +287,12 @@ please return an image and provide helpful information in this JSON format:
     let imageData = null;
     let mimeType = "image/png";
     let designDetails = null;
-    console.log("Response:", JSON.stringify(response));
+    // console.log("Response:", JSON.stringify(response));
    
     // Process the response
-    if (response.candidates && response.candidates.length > 0) {
-      const parts = response.candidates[0].content.parts;
+    if (response && response.candidates && response.candidates.length > 0) {
+      const candidate = response.candidates[0];
+      const parts = candidate.content?.parts || [];
       console.log("Number of parts in response:", parts.length);
 
       for (const part of parts) {

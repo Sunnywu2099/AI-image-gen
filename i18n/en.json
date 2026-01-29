@@ -7,6 +7,15 @@
     "badge": "Free AI Pool Designer",
     "headline": "Your dream pool, designed by AI.",
     "description": "Whether it's turning your backyard into a pool with realistic costs, or adding stylish décor to your pool with detailed names — AI makes it simple.",
+    "step1Title": "1. Upload the image of your backyard",
+    "step1Desc": "Your backyard image could be either with pool or without pool.",
+    "step2Title": "2. Set the theme",
+    "themePlaceholder": "E.g. Cyberpunk, Minimalism, rainforest",
+    "themeChristmas": "🎄 Christmas",
+    "themeHalloween": "🎃 Halloween",
+    "themeParty": "🎉 Party",
+    "themeTropical": "🏝️ Tropical",
+    "themeMinimalist": "🌑 Minimalist",
     "ctaPrefix": "Upload your backyard or pool image",
     "ctaOr": " or ",
     "ctaBackyard": "backyard",
@@ -63,5 +72,3 @@
     "generic": "An error occurred"
   }
 }
-
-

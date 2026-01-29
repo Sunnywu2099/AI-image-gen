@@ -1,13 +1,22 @@
 {
   "home": {
     "title": "Editor di Immagini",
-    "description": "Strumento di progettazione piscine basato su Gemini 2.5 Nano Banana"
+    "description": "Strumento di progettazione piscine potenziato da Gemini 2.5 Nano Banana"
   },
   "upload": {
-    "badge": "Progettista di Piscine AI Gratuito",
+    "badge": "Progettista di Piscine IA Gratuito",
     "headline": "La piscina dei tuoi sogni, progettata dall'IA.",
-    "description": "Che si tratti di trasformare il tuo cortile in una piscina con costi realistici, o di aggiungere decorazioni eleganti alla tua piscina — l'IA lo rende semplice.",
-    "ctaPrefix": "Carica la tua immagine del cortile o della piscina",
+    "description": "Che si tratti di trasformare il tuo cortile in una piscina con costi realistici, o di aggiungere decorazioni eleganti alla tua piscina con nomi dettagliati — l'IA lo rende semplice.",
+    "step1Title": "1. Carica l'immagine del tuo cortile",
+    "step1Desc": "L'immagine del tuo cortile può essere con o senza piscina.",
+    "step2Title": "2. Imposta il tema",
+    "themePlaceholder": "Es. Cyberpunk, Minimalismo, foresta pluviale",
+    "themeChristmas": "🎄 Natale",
+    "themeHalloween": "🎃 Halloween",
+    "themeParty": "🎉 Festa",
+    "themeTropical": "🏝️ Tropicale",
+    "themeMinimalist": "🌑 Minimalista",
+    "ctaPrefix": "Carica l'immagine del tuo cortile o piscina",
     "ctaOr": " o ",
     "ctaBackyard": "cortile",
     "ctaPool": "piscina",
@@ -29,8 +38,8 @@
     "subscribe": "Iscriviti",
     "suggestion": {
       "title": "Suggerimento Progettazione Piscina",
-      "desc": "Descrizione del Design",
-      "materials": "Suggerimenti Materiali",
+      "desc": "Descrizione del Progetto",
+      "materials": "Suggerimenti sui Materiali",
       "cost": "Stima dei Costi",
       "construction": "Consigli di Costruzione"
     }
@@ -52,13 +61,13 @@
     "describeEdit": "Descrivi come vuoi modificare l'immagine",
     "describeGenerate": "Descrivi l'immagine che vuoi generare",
     "placeholderEdit": "Esempio: Rendi lo sfondo blu e aggiungi un arcobaleno...",
-    "placeholderGenerate": "Esempio: Un'immagine 3D di un maiale con le ali...",
+    "placeholderGenerate": "Esempio: Un'immagine renderizzata in 3D di un maiale con le ali...",
     "edit": "Modifica Immagine",
     "generate": "Genera Immagine"
   },
   "errors": {
     "noImage": "Nessuna immagine restituita dall'API",
-    "failedGenerate": "Generazione immagine fallita",
+    "failedGenerate": "Impossibile generare l'immagine",
     "subscriptionFailed": "Iscrizione fallita",
     "generic": "Si è verificato un errore"
   }

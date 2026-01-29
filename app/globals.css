@@ -1,11 +1,50 @@
-@import url('https://fonts.googleapis.com/css2?family=Manrope:wght@200;300;400;500;600;700;800&display=swap');
+/* Roobert 字体定义 */
+@font-face {
+  font-family: 'Roobert';
+  src: url('https://cdn.shopify.com/s/files/1/0812/9049/4250/files/subset-Roobert-Light.woff2?v=1763618806') format('woff2'),
+       url('https://cdn.shopify.com/s/files/1/0812/9049/4250/files/subset-Roobert-Light.woff?v=1763618806') format('woff');
+  font-weight: 300;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Roobert';
+  src: url('https://cdn.shopify.com/s/files/1/0812/9049/4250/files/subset-Roobert-Regular.woff2?v=1763618431') format('woff2'),
+       url('https://cdn.shopify.com/s/files/1/0812/9049/4250/files/subset-Roobert-Regular.woff?v=1763618431') format('woff');
+  font-weight: 400;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Roobert';
+  src: url('https://cdn.shopify.com/s/files/1/0812/9049/4250/files/subset-Roobert-Medium.woff2?v=1763618936') format('woff2'),
+       url('https://cdn.shopify.com/s/files/1/0812/9049/4250/files/subset-Roobert-Medium.woff?v=1763618936') format('woff');
+  font-weight: 500;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Roobert';
+  src: url('https://cdn.shopify.com/s/files/1/0812/9049/4250/files/subset-Roobert-SemiBold.woff2?v=1763619680') format('woff2'),
+       url('https://cdn.shopify.com/s/files/1/0812/9049/4250/files/subset-Roobert-SemiBold.woff?v=1763619680') format('woff');
+  font-weight: 600;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'Roobert';
+  src: url('https://cdn.shopify.com/s/files/1/0812/9049/4250/files/subset-Roobert-Bold.woff2?v=1763618107') format('woff2'),
+       url('https://cdn.shopify.com/s/files/1/0812/9049/4250/files/subset-Roobert-Bold.woff?v=1763618107') format('woff');
+  font-weight: 700;
+  font-display: swap;
+}
 
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
 body {
-  font-family: 'Manrope', Arial, Helvetica, sans-serif;
+  font-family: 'Roobert', Arial, Helvetica, sans-serif;
 }
 
 @layer utilities {
@@ -59,6 +98,7 @@ body {
       --Text-text1-35: rgba(36, 36, 38, 0.35);  /* 35%透明度 */
       --Text-text3: rgba(36, 36, 38, 0.60);
       --Blue-blue2: #06A6D7;
+      --Brand-infinityblue: #0D22E6;  /* 品牌蓝色 */
       --Text-white1: #FFFFFF;
       --Bg-bg2: #EAEAEB;
       
@@ -79,7 +119,7 @@ body {
       --Line-height-Display-8: 24px; /* 130% - 建议区域标题 */
       
       /* 字体变量 */
-      --font-brand: 'Manrope', Arial, Helvetica, sans-serif;
+      --font-brand: 'Roobert', Arial, Helvetica, sans-serif;
     }
     
     /* PC端变量覆盖 */

@@ -7,7 +7,7 @@ import { DesignDetails } from "@/lib/types";
 import ReactMarkdown from "react-markdown";
 import { MeshGradient } from "@paper-design/shaders-react";
 import { useTranslations } from "next-intl";
-import { trackInteraction, trackPageView, trackConversion, trackError } from "@/lib/ptengine";
+// import { trackInteraction, trackPageView, trackConversion, trackError } from "@/lib/ptengine";
 
 interface ProcessingViewProps {
   uploadedImage: string;
@@ -41,6 +41,7 @@ export function ProcessingView({
 
   // 追踪页面状态
   useEffect(() => {
+    /*
     if (isProcessing) {
       trackPageView('processing_page', {
         status: 'processing'
@@ -54,6 +55,7 @@ export function ProcessingView({
         status: 'completed_subscribed'
       });
     }
+    */
   }, [isProcessing, isCompleted, isSubscribed]);
 
   // 文件替换：选择并上传新原图后，沿用上层的 handleImageSelect 流程
@@ -62,17 +64,21 @@ export function ProcessingView({
     if (!file) return;
     
     // 追踪替换图片尝试
-    // trackInteraction('replace_image_attempt', {
-    //   file_name: file.name,
-    //   file_size: file.size,
-    //   file_type: file.type
-    // });
+    /*
+    trackInteraction('replace_image_attempt', {
+      file_name: file.name,
+      file_size: file.size,
+      file_type: file.type
+    });
+    */
     
     // 检查文件大小限制 (3MB)
     if (file.size > 3 * 1024 * 1024) {
-      // trackError('replace_image_file_too_large', {
-      //   file_size: file.size
-      // });
+      /*
+      trackError('replace_image_file_too_large', {
+        file_size: file.size
+      });
+      */
       onError?.(t('upload.fileTooLarge'));
       return;
     }
@@ -82,18 +88,22 @@ export function ProcessingView({
     reader.onload = (event) => {
       const result = event.target?.result as string;
       // 追踪替换图片成功
-      // trackInteraction('replace_image_success', {
-      //   file_name: file.name,
-      //   file_size: file.size
-      // });
+      /*
+      trackInteraction('replace_image_success', {
+        file_name: file.name,
+        file_size: file.size
+      });
+      */
       onReplaceImage?.(result);
       // 清空文件选择，便于再次选择同一文件也能触发 onChange
       inputEl.value = "";
     };
     reader.onerror = () => {
-      // trackError('replace_image_read_error', {
-      //   file_name: file.name
-      // });
+      /*
+      trackError('replace_image_read_error', {
+        file_name: file.name
+      });
+      */
       inputEl.value = "";
     };
     reader.readAsDataURL(file);
@@ -128,32 +138,32 @@ export function ProcessingView({
     return () => clearTimeout(timer);
   }, [email, t]);
 
-  useEffect(() => {
-    if (designDetails) {
-      setShowDesignDetails(true);
-    }
-  }, [designDetails]);
-
   const handleSubscribe = async () => {
     const v = email.trim();
     
     // 追踪订阅尝试
+    /*
     trackInteraction('subscribe_attempt', {
       has_email: !!v
     });
+    */
     
     if (!v) {
+      /*
       trackError('subscribe_validation_error', {
         error_type: 'email_required'
       });
+      */
       setEmailError(t('processing.emailRequired'));
       return;
     }
     const err = validateEmail(v);
     if (err) {
+      /*
       trackError('subscribe_validation_error', {
         error_type: 'email_invalid'
       });
+      */
       setEmailError(err);
       return;
     }
@@ -162,18 +172,22 @@ export function ProcessingView({
       setIsSubscribing(true);
       await onSubscribe(v);
       // 追踪订阅成功（转化事件）
+      /*
       trackConversion('subscription', {
         email: v
       });
+      */
       setEmailError(null);
       setTimeout(() => {
         setShowDesignDetails(true);
       }, 500);
     } catch (error) {
       // 追踪订阅失败
+      /*
       trackError('subscribe_failed', {
         error_message: error instanceof Error ? error.message : 'Unknown error'
       });
+      */
     } finally {
       setIsSubscribing(false);
     }
