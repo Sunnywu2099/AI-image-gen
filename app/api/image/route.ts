@@ -123,13 +123,13 @@ import { NextRequest, NextResponse } from "next/server";
      } as Record<string, string>; 
  
      // Make sure we have credentials configured (Vertex AI uses service account) 
-     if (!process.env.GOOGLE_APPLICATION_CREDENTIALS && !process.env.GOOGLE_CREDENTIALS_JSON) { 
-       console.error("Google credentials not configured"); 
-       return NextResponse.json( 
-         { success: false, error: "Google credentials not configured" }, 
-         { status: 500 } 
-       ); 
-     } 
+    if (!process.env.GOOGLE_APPLICATION_CREDENTIALS && !process.env.GOOGLE_CREDENTIALS_JSON && !process.env.GOOGLE_CLIENT_EMAIL && !GOOGLE_AI_STUDIO_TOKEN) { 
+      console.error("Google credentials not configured"); 
+      return NextResponse.json( 
+        { success: false, error: "Google credentials not configured" }, 
+        { status: 500 } 
+      ); 
+    } 
  
      // Parse JSON request 
      const requestData = await req.json().catch((err) => { 
