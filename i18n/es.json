@@ -26,7 +26,8 @@
     "emailPlaceholder": "Ingresa tu correo electrónico",
     "subscribe": "Suscribirse",
     "ctaReupload": "Volver a subir",
-    "generate": "Generar"
+    "generate": "Generar",
+    "uploadPlaceholder": "Subir la imagen como referencia"
   },
   "processing": {
     "designing": "Por favor espera...",

@@ -477,7 +477,7 @@ export function ImageUpload({ onImageSelect, currentImage, originalImage, onErro
                       {/* 上传文字 */}
                       <div className="flex flex-col items-center gap-1 text-center">
                         <p className="text-text-1 font-semibold text-body-4 font-brand leading-body-4">
-                          Upload the image as reference
+                          {t('upload.uploadPlaceholder')}
                         </p>
                         <p className="text-text-3 font-normal text-body-4 font-brand leading-body-4">
                           {t('upload.fileFormatHint')}
