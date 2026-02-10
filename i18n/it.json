@@ -25,7 +25,8 @@
     "subscribeTitle": "Iscriviti alla newsletter per continuare",
     "emailPlaceholder": "Inserisci indirizzo email",
     "subscribe": "Iscriviti",
-    "ctaReupload": "Ricarica"
+    "ctaReupload": "Ricarica",
+    "generate": "Generare"
   },
   "processing": {
     "designing": "Attendere prego...",
